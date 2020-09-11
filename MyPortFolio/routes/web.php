@@ -17,14 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/', 'Auth\LoginController@logout');
+Route::post('/', 'Auth\LoginController@logout'); //ユーザーのログアウト処理
 
-Auth::routes();
+Route::get('guest', 'Auth\LoginController@guest'); //ゲストログイン
 
-Route::get('/test', function() {
-    return view('index');
-});
+Auth::routes([
+    'reset' => false
+]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index'); //ゲストログイン時のホームに戻る際のルーティング
+Route::post('/home', 'HomeController@index')->name('home');
 
 
