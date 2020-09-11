@@ -43,4 +43,17 @@ class LoginController extends Controller
         Auth::logout();
         return view("welcome");
     }
+
+    public function guest() {
+
+        $email="guest@example.com";
+        $password="guest123";
+
+        if(Auth::attempt(['email' => $email,'password' => $password]))
+        {
+            return redirect('/home');
+        }
+    }
 }
+
+
