@@ -1,63 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.header')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@section('content')
+    <div class="main-content container-fuild d-flex flex-column justify-content-center align-items-center text-center text-white">
+        <h1>ApparelAppとは？</h1>
+        <p>アパレルショップをシェア、いいねができるSNSサービス！</p>
+        <p>早速登録してあなたのお気に入りのショップを投稿しよう！</p>
+    </div>
 
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
-    <!-- Style -->
-    <style>
-        a.nav-link {
-            color: white;
-            padding: 0;
-        }
-
-        .btn {
-            padding: 0;
-            margin-right: 7px;
-        }
-    </style>
-
-</head>
-
-<body>
-    <header class="navbar navbar-expand bg-light">
-        <a href="#" class="navbar-brand text-dark">ApparelApp</a>
-
-        <div class="collapse navbar-collapse">
-            @if (Route::has('login'))
-            <ul class="navbar-nav ml-auto">
-                @auth
-                <li class="nav-item">
-                    <button class="btn "><a class="nav-link" href="{{ url('/home') }}">ホーム</a></button>
-                </li>
-                @else
-                <li class="nav-item">
-                    <button class="btn btn-info">
-                        <a class="nav-link" href="{{ route('login') }}">ログイン</a>
-                    </button>
-                </li>
-
-                @if (Route::has('register'))
-                <li class="nav-item">
-                    <button class="btn btn-success">
-                        <a class="nav-link" href="{{ route('register') }}">新規登録</a>
-                    </button>
-                </li>
-                @endif
-                @endauth
-            </ul>
-            @endif
+    <footer class="container-fuild d-flex align-items-center justify-content-center  bg-light" style="height: 120px">
+        <div class="row">
+            <p>©︎Katsushi Takegami </p>
         </div>
-    </header>
-</body>
-
-</html>
+    </footer>
+@endsection
