@@ -1,0 +1,28 @@
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+a.nav-link {
+    color: white;
+    padding: 0;
+}
+
+.btn {
+    padding: 0;
+    margin-right: 7px;
+}
+
+.main-content {
+    background-image: url("../img/main-image.jpg");
+    background-repeat: no-repeat;
+    background-position: center right;
+    background-size: cover;
+    background-attachment: fixed;  /*背景画像がスクロールしない指定 */
+    width: 100%;
+    min-height: 100vh;
+    text-shadow: 2px 2px 3px black;
+}
+
