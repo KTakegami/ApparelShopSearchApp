@@ -20,7 +20,7 @@
 
 <body>
   <header class="navbar navbar-expand bg-light">
-    <a href="#" class="navbar-brand text-dark">ApparelApp</a>
+    <a href="{{ url('/') }}" class="navbar-brand text-dark">ApparelApp</a>
 
     <div class="collapse navbar-collapse">
       @if (Route::has('login'))
@@ -30,6 +30,13 @@
           <button class="btn btn-primary"><a class="nav-link" href="{{ url('/home') }}">ホーム</a></button>
         </li>
         @else
+        <form id="guest-login" method="get" action="guest">
+          <li>
+            <button class="btn btn-secondary">
+              <a class="nav-link">ゲストログイン</a>
+            </button>
+          </li>
+        </form>
         <li class="nav-item">
           <button class="btn btn-info">
             <a class="nav-link" href="{{ route('login') }}">ログイン</a>
@@ -49,7 +56,7 @@
     </div>
   </header>
 
- @yield('content')
+  @yield('content')
 </body>
 
 </html>
