@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/', 'Auth\LoginController@logout');
+
 Auth::routes();
 
 Route::get('/test', function() {
@@ -24,3 +26,5 @@ Route::get('/test', function() {
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
