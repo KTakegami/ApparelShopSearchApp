@@ -24,8 +24,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ApparelApp
-      MYSQL_USER: katu12
-      MYSQL_PASSWORD: katudon
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
       TZ: 'Asia/Tokyo'
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
