@@ -17,15 +17,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/', 'Auth\LoginController@logout'); //ユーザーのログアウト処理
-
+//ログイン周り
 Route::get('guest', 'Auth\LoginController@guest'); //ゲストログイン
-
 Auth::routes([
     'reset' => false
-]);
+    ]);
 
-Route::get('/home', 'HomeController@index'); //ゲストログイン時のホームに戻る際のルーティング
-Route::post('/home', 'HomeController@index')->name('home');
+//ゲストログイン時のホームに戻る際のルーティング
+Route::get('/home', 'HomeController@index');
 
+
+//ログインしている時のみルーティング
+Route::group(['middleware' => 'auth'], function() {
+
+    //ユーザーのログアウト処理
+    Route::post('/', 'Auth\LoginController@logout');
+
+    //投稿機能(作成,作成処理,編集,更新,削除)
+    Route::resource('shops', 'ShopController', ['only' => ['create', 'store']]);
+
+
+});
 

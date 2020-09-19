@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Laravel</title>
+  <title>ApparelShopSearch</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -16,16 +16,34 @@
   <!-- Style -->
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 
+  <!-- fontawesome -->
+  <script src="https://kit.fontawesome.com/74b4cb0617.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
   <header class="navbar navbar-expand bg-light">
-    <a href="{{ url('/') }}" class="navbar-brand text-dark">ApparelApp</a>
+    <a href="{{ url('/') }}" class="navbar-brand text-dark">ApparelShopSearch</a>
 
     <div class="collapse navbar-collapse">
       @if (Route::has('login'))
       <ul class="navbar-nav ml-auto">
         @auth
+        <li class="nav-item">
+          <button class="btn btn-secondary">
+            <a class="nav-link" href="{{ url('/shops/create') }}">
+              <i class="fas fa-pen-square"></i>
+              新規投稿
+            </a>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="btn btn-warning">
+            <a class="nav-link" href="{{ url('/mypage') }}">
+              マイページ
+            </a>
+          </button>
+        </li>
         <li class="nav-item">
           <button class="btn btn-primary"><a class="nav-link" href="{{ url('/home') }}">ホーム</a></button>
         </li>
