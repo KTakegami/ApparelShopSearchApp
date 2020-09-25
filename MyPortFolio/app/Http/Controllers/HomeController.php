@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $shops = Shop::all();
-        return view('home', ['shops' => $shops]);
+        $user = auth()->user();
+        return view('home');
     }
 }

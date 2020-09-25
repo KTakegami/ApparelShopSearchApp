@@ -15,9 +15,12 @@ class GenresTable extends Migration
     {
         Schema::create("genres", function (Blueprint $table) {
             $table->increments("genres_id");
+            $table->integer("shops_id")->unsigned();
             $table->string("genre");
             $table->timestamps();
-            
+
+            $table->foreign('shops_id')->references('shops_id')->on('shops')->onDelete('cascade')->onUpdate('cascade');
+
            });
     }
 

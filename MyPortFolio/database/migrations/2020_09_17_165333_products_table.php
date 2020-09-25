@@ -15,8 +15,11 @@ class ProductsTable extends Migration
     {
         Schema::create("products", function (Blueprint $table) {
             $table->increments("products_id");
+            $table->integer("shops_id")->unsigned();
             $table->string("product"); //取り扱い商品
             $table->timestamps();
+
+            $table->foreign('shops_id')->references('shops_id')->on('shops')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -21,7 +21,7 @@
 
 </head>
 
-<body>
+<body style="min-height:100vh; position:relative;">
   <header class="navbar navbar-expand bg-light">
     <a href="{{ url('/') }}" class="navbar-brand text-dark">ApparelShopSearch</a>
 
@@ -75,6 +75,7 @@
   </header>
 
   @yield('content')
+
 </body>
 
 </html>

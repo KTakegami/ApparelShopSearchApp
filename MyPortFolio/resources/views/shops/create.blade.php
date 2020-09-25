@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container mt-5">
+<div class="container my-5">
   <form method="post" action="{{ route('shops.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group row">
@@ -95,7 +95,7 @@
           </div>
           <div class="col-md-6">
             <label for="shopimage">ショップの画像</label>
-            <input class="form-control" id="shopimage" type="file" name="shop_image">
+            <input class="form-control" id="shopimage" type="file" name="shop_image" accept="image/*">
           </div>
         </div>
       </div>
@@ -110,6 +110,6 @@
     </div>
   </form>
 </div>
-
+@include('layouts.footer')
 
 @endsection

@@ -1,6 +1,7 @@
 @extends('layouts.header')
 
 @section('content')
+
 <p class="hide mt-5 mx-auto text-center" style="width: 300px; background-color: rgba(0.255,204,0.7)">
     ようこそ{{ Auth::user()->name }}さん
 </p>
@@ -105,33 +106,7 @@
     </div>
 </div>
 
-<div class="container-fuild d-flex" style="height:700px;">
-    <div class="container bg-secondary mt-5">
-        <div class="row">
-            @foreach($shops as $shop)
-            <div class="col-6 col-md-4 bg-primary d-flex flex-column justify-content-center" style="width:200px;height:200px;">
-                <img class="bg-light d-block" style="width:80%;height:60%">
-                <a class="text-white" href="">{{$shop->name}}</a>
-                <p class="m-0">ジャンル</p>
-                <p class="m-0">都道府県</p>
-            </div>
-            @endforeach
-        </div>
-    </div>
-</div>
-
-<footer class="container-fuild d-flex justify-content-center align-items-center       bg-light" style="height: 150px;">
-    <button class="btn btn-warning p-2">
-        <a href="{{ url('/') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-white">
-            <!-- フォームを発火 -->
-            ログアウト
-        </a>
-    </button>
-
-    <form id="logout-form" action="{{ url('/') }}" method="POST" class="d-none">
-        @csrf
-    </form>
-</footer>
+@include('layouts.footer')
 
 <script type="text/javascript">
     const Welcome = document.querySelector("p.hide");
