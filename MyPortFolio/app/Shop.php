@@ -13,6 +13,7 @@ class Shop extends Model
     public function users() { //N:1
         return $this->belongsTo('App\User');
     }
+    
     public function genres() { //1:1
         return $this->hasOne('App\Genre');
     }
@@ -27,9 +28,5 @@ class Shop extends Model
 
     public function favorites() { //1:N
         return $this->hasMany('App\Favorite');
-    }
-
-    public function getPrefName() {
-        return config('prefectures'.$this->prefecture_id);
     }
 }
