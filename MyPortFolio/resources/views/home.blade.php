@@ -2,11 +2,7 @@
 
 @section('content')
 
-<p class="hide mt-5 mx-auto text-center" style="width: 300px; background-color: rgba(0.255,204,0.7)">
-    ようこそ{{ Auth::user()->name }}さん
-</p>
-
-<div class="container mt-5">
+<div class="container mt-5" style="padding-bottom:150px;">
     <div class="row">
         <div class="col-12">
             <div class="search">絞り込み検索</div>

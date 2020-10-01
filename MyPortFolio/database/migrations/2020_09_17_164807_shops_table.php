@@ -14,14 +14,14 @@ class ShopsTable extends Migration
     public function up()
     {
         Schema::create('shops', function(Blueprint $table) {
-            $table->increments('shops_id');
-            $table->integer('users_id')->unsigned();
-            $table->string('name')->unique();
-            $table->string('description')->nullable();
-            $table->string('shop_image')->nullable();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('shop_name')->unique()->comment('ショップ名');
+            $table->text('shop_description')->nullable()->comment('ショップ説明');
+            $table->string('shop_image')->nullable()->comment('ショップ画像');
+            $table->string('shop_address')->unique()->comment('ショップ住所');
 
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

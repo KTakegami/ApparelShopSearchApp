@@ -14,12 +14,9 @@ class PrefecturesTable extends Migration
     public function up()
     {
         Schema::create("prefectures", function (Blueprint $table) {
-            $table->increments('prefectures_id');
-            $table->integer('shops_id')->unsigned();
+            $table->bigIncrements('id');
             $table->string('prefectures');
             $table->timestamps();
-
-            $table->foreign('shops_id')->references('shops_id')->on('shops')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -30,6 +27,7 @@ class PrefecturesTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('prefectures');
     }
 }

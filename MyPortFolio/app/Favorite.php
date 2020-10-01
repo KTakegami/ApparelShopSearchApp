@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorite extends Model
 {
-    protected $table = 'favorites';
-
-    protected $primaryKey = 'favorites_id';
+  public function shop() {
+    return $this->belongsTo('App\Shop');
+  }
 }

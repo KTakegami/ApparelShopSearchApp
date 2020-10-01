@@ -14,13 +14,10 @@ class FavoritesTable extends Migration
     public function up()
     {
         Schema::create("favorites", function(Blueprint $table) {
-            $table->increments('favorites_id');
-            $table->integer('users_id')->unsigned();
-            $table->integer('shops_id')->unsigned();
+            $table->increments('id');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('shop_id')->constrained();
             $table->timestamps();
-
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('shops_id')->references('shops_id')->on('shops')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
