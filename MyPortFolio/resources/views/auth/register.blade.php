@@ -1,4 +1,6 @@
-@extends('layouts.header')
+@extends('layouts.parent')
+
+@include('layouts.header')
 
 @section('content')
 <div class="container py-5">
