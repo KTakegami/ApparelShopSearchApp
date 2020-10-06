@@ -14,17 +14,28 @@ class ShopController extends Controller
     {
         $user = auth()->user();
         $prefs = config('prefectures'); //都道府県の連想配列を取得
-
-        $shop_name = $request->shopName; //ショップ名検索
-        $pref = $request->pref_code; //都道府県検索
         $query = Shop::query(); //クエリを作成
 
+
+        //絞り込み検索ここから//
+        $shop_name = $request->shopName;
+        $genre = $request->genre;
+        $product = $request->product;
+        $pref = $request->pref_code;
+        
         if (isset($shop_name)) {
             $query->where('shop_name', 'like', '%' . $shop_name . '%');
+        }
+        if (isset($genre)) {
+            $query->where('genre_id', $genre);
+        }
+        if (isset($product)) {
+            $query->where('product_id', $pref);
         }
         if (isset($pref)) {
             $query->where('prefecture_id', $pref);
         }
+        //ここまで
 
         $shops = $query->orderBy('created_at', 'desc')->paginate(5);
         //↑新しい順に上から表示
