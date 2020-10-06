@@ -53,7 +53,18 @@ class ShopController extends Controller
 
     public function store(Request $request)
     {
+
         $user = auth()->user();
+
+        $request->validate([
+            'shopName' => ['required','string', 'max:30'],
+            'shop_description' => ['string', 'max:1000'],
+            'genre' => 'required',
+            'product' => 'required',
+            'prefecture' => 'required',
+            'shop_address' => ['unique:shops', 'string', 'max:100']
+        ]);
+
         $shops = new Shop;
         $shops->user_id = $user->id;
         $shops->shop_name = $request->shopName;
@@ -71,6 +82,7 @@ class ShopController extends Controller
         }
 
         $shops->save();
+
 
         return redirect('/shops');
     }
