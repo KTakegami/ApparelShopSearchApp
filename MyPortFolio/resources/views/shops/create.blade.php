@@ -7,7 +7,7 @@
     @csrf
     <div class="form-group row">
       <div class="col-md-12">
-        <input id="shop_name" name="shop_name" class="form-control" type="text" placeholder="ショップ名を入力してください">
+        <input id="shop_name" name="shopName" class="form-control" type="text" placeholder="ショップ名を入力してください">
 
         <textarea class="form-control mt-2" name="shop_description" id="description" cols="30" rows="5" placeholder="どんなショップですか？"></textarea>
 
