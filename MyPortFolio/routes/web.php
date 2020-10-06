@@ -23,9 +23,8 @@ Auth::routes([
     'reset' => false
     ]);
 
-//ゲストログイン時のホームに戻る際のルーティング
-Route::get('/home', 'HomeController@index');
-
+//ショップ一覧に戻る際のルーティング
+Route::get('/shops', 'ShopController@index');
 
 //ログインしている時のみルーティング
 Route::group(['middleware' => 'auth'], function() {

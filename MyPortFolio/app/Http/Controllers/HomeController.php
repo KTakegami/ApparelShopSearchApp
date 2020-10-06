@@ -22,9 +22,4 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        $user = auth()->user();
-        return view('home');
-    }
 }
