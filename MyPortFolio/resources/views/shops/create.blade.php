@@ -1,7 +1,8 @@
-@extends("layouts.header")
+@extends("layouts.parent")
+
+@include('layouts.header')
 
 @section('content')
-
 <div class="container mt-5" style="padding-bottom:170px;">
   <form method="post" action="{{ route('shops.store') }}" enctype="multipart/form-data">
     @csrf

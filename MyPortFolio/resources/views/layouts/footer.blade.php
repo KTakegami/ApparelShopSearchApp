@@ -1,3 +1,4 @@
+@section('footer')
 <footer class="container-fuild d-flex justify-content-center align-items-center bg-secondary" style="
   height:150px;
   width:100%;
@@ -15,3 +16,4 @@
     @csrf
   </form>
 </footer>
+@endsection

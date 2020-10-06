@@ -24,16 +24,18 @@ Auth::routes([
     ]);
 
 //ショップ一覧に戻る際のルーティング
-Route::get('/shops', 'ShopController@index');
 
 //ログインしている時のみルーティング
 Route::group(['middleware' => 'auth'], function() {
-
+    
     //ユーザーのログアウト処理
     Route::post('/', 'Auth\LoginController@logout');
+    
 
+    Route::get('/shops', 'ShopController@index');
+    
     //投稿機能(作成,作成処理,編集,更新,削除)
-    Route::resource('shops', 'ShopController', ['only' => ['create', 'store']]);
+    Route::resource('shops', 'ShopController', ['only' => ['create', 'store','show']]);
 
 
 });

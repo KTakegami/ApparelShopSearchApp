@@ -1,7 +1,8 @@
-@extends('layouts.header')
+@extends('layouts.parent')
+
+@include('layouts.header')
 
 @section('content')
-
 <div class="container mt-5 pt-2" style="padding-bottom:170px;">
     <div class="row shop_search">
         <div class="col-12">
@@ -79,7 +80,7 @@
                     @endif
                     <!-- 画像表示処理 -->
 
-                    <a href="">{{$shop->shop_name}}</a>
+                    <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
                     <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
                 </div>
             </div>
@@ -88,7 +89,6 @@
     </div>
 
 </div>
-
 
 @include('layouts.footer')
 
