@@ -8,7 +8,31 @@ use Illuminate\Support\Facades\Validator;
 use App\Shop;
 
 class ShopController extends Controller
+
 {
+    public function index(Request $request)
+    {
+        $user = auth()->user();
+        $prefs = config('prefectures'); //都道府県の連想配列を取得
+
+        $shop_name = $request->shopName; //ショップ名検索
+        $pref = $request->pref_code; //都道府県検索
+        $query = Shop::query(); //クエリを作成
+
+        if (isset($shop_name)) {
+            $query->where('shop_name', 'like', '%' . $shop_name . '%');
+        }
+        if (isset($pref)) {
+            $query->where('prefecture_id', $pref);
+        }
+
+        $shops = $query->orderBy('created_at', 'desc')->paginate(5);
+        //↑新しい順に上から表示
+
+        return view('shops.index')->with('shops', $shops)->with('prefs', $prefs);
+    }
+
+
     public function create(Request $request)
     {
         $user = auth()->user();
@@ -21,23 +45,22 @@ class ShopController extends Controller
         $user = auth()->user();
         $shops = new Shop;
         $shops->user_id = $user->id;
-        $shops->shop_name = $request->shop_name;
+        $shops->shop_name = $request->shopName;
         $shops->shop_description = $request->shop_description;
         $shops->genre_id = $request->genre;
         $shops->product_id = $request->product;
         $shops->prefecture_id = $request->pref_code;
         $shops->shop_address = $request->address;
-        $shops->shop_image = $request->shop_image;
+
+        $shop_image = $request->shop_image;
+
+        if($shop_image) { //画像投稿時public直下に画像を保存
+            $filePath = $shop_image->store('public');
+            $shops->shop_image = str_replace('public', '',$filePath);
+        }
 
         $shops->save();
 
-        // logger()->debug('shop_name : ' . $request->shop_name);
-        // logger()->debug('pref_code : ' . $request->pref_code);
-        // logger()->debug('genre : ' . $request->genre);
-        // logger()->debug('product : ' . $request->product);
-
-        return redirect ('/shops/create');
-
-
+        return redirect('/shops');
     }
 }
