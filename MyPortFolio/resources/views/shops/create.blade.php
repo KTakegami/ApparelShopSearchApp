@@ -1,5 +1,7 @@
 @extends("layouts.parent")
 
+@section('title','ショップ投稿')
+
 @include('layouts.header')
 
 @section('content')
@@ -55,14 +57,14 @@
             <label for="prefectures">都道府県</label>
             <select class="form-control" name="pref_code" id="prefectures">
               <option value="" selected>選択してください</option>
-              @foreach ($prefs as $index => $name)
+              @foreach($prefs as $index => $name)
               <option value="{{ $index }}">{{$name}}</option>
               @endforeach
             </select>
           </div>
           <div class="col-md-6">
             <label for="address">住所</label>
-            <input class="form-control" id="address" type="text" name="address">
+            <input class="form-control" id="address" type="text" name="address" placeholder="※市町村以降を入力してください">
           </div>
         </div>
 

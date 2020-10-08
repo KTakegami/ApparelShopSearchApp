@@ -1,6 +1,12 @@
 @section('header')
 <header class="navbar navbar-expand bg-info">
+  @if(Route::has('login'))
+  @auth
+  <a href="{{ url('/shops') }}" class="navbar-brand text-dark">ApparelShopSearch</a>
+  @else
   <a href="{{ url('/') }}" class="navbar-brand text-dark">ApparelShopSearch</a>
+  @endauth
+  @endif
 
   <div class="collapse navbar-collapse">
     @if (Route::has('login'))
@@ -22,21 +28,14 @@
         </button>
       </li>
       <li class="nav-item">
-        <button class="btn btn-primary p-0"><a class="nav-link" href="{{ url('/shops') }}">ショップ一覧</a></button>
-      </li>
-      @else
-      <form id="guest-login" method="get" action="guest">
-        <li>
-          <button class="btn btn-danger p-0">
-            <a class="nav-link">ゲストログイン</a>
-          </button>
-        </li>
-      </form>
-      <li class="nav-item">
-        <button class="btn btn-warning p-0">
-          <a class="nav-link" href="{{ route('login') }}">ログイン</a>
+        <button class="btn btn-danger p-0">
+          <a href="{{ url('/') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class='nav-link'>
+            <!-- フォームを発火 -->
+            ログアウト
+          </a>
         </button>
       </li>
+      @else
 
       @if (Route::has('register'))
       <li class="nav-item">
@@ -45,9 +44,26 @@
         </button>
       </li>
       @endif
+      <li class="nav-item">
+        <button class="btn btn-warning p-0">
+          <a class="nav-link" href="{{ route('login') }}">ログイン</a>
+        </button>
+      </li>
+      <form id="guest-login" method="get" action="guest">
+        <li>
+          <button class="btn btn-danger p-0">
+            <a class="nav-link">ゲストログイン</a>
+          </button>
+        </li>
+      </form>
       @endauth
     </ul>
     @endif
   </div>
+
+
+  <form id="logout-form" action="{{ url('/') }}" method="POST" class="d-none">
+    @csrf
+  </form>
 </header>
 @endsection

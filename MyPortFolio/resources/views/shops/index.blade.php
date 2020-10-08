@@ -1,5 +1,7 @@
 @extends('layouts.parent')
 
+@section('title','ショップ一覧/検索')
+
 @include('layouts.header')
 
 @section('content')
@@ -67,27 +69,27 @@
         <div class="row">
             @foreach($shops as $shop)
             <div class="col-12 col-sm-6 col-md-4 mb-3">
-                <div class="shop-card container" style="border: 1px solid #000;">
+                <div class="shop-card container">
                     <!-- 画像表示処理 -->
                     @if(isset($shop->shop_image))
-                    <div class="image mt-1">
-                        <img src="/storage/{{ $shop->shop_image }}" style="width:100%;height:100px">
+                    <div>
+                        <img class="img" src="/storage/{{ $shop->shop_image }}">
                     </div>
                     @else
-                    <div class="noimage bg-white" style="width:100%;height:100px">
+                    <div class="img bg-white d-flex justify-content-center align-items-center">
                         <p>NoImage</p>
                     </div>
                     @endif
                     <!-- 画像表示処理 -->
-
-                    <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
-                    <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
+                    <div class="shoo-link mt-2">
+                        <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
+                        <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
+                    </div>
                 </div>
             </div>
             @endforeach
         </div>
     </div>
-
 </div>
 
 @include('layouts.footer')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 use App\Shop;
 
@@ -37,7 +38,7 @@ class ShopController extends Controller
         }
         //ここまで
 
-        $shops = $query->orderBy('created_at', 'desc')->paginate(5);
+        $shops = $query->orderBy('created_at', 'desc')->paginate(10);
         //↑新しい順に上から表示
 
         return view('shops.index')->with('shops', $shops)->with('prefs', $prefs);
@@ -48,7 +49,9 @@ class ShopController extends Controller
     {
         $user = auth()->user();
         $prefs = config('prefectures');
-        return view('shops.create')->with(['prefs' => $prefs]);
+
+        logger()->info($prefs);
+        return view('shops.create',['prefs' => $prefs]);
     }
 
     public function store(Request $request)
@@ -85,5 +88,26 @@ class ShopController extends Controller
 
 
         return redirect('/shops');
+    }
+
+    public function Show(Request $request, $id) {
+        $user_id = Auth::id();
+        $shop = Shop::findOrFail($id);
+
+        return view('shops.show')->with('shop',$shop)->with('user_id',$user_id);
+    }
+
+    public function edit($id) {
+        $shop = Shop::findOrFail($id);
+        $prefs = config('prefectures');
+        return view('shops.edit')->with('shop',$shop)->with('prefs', $prefs);
+    }
+
+    public function update(Request $request,$id) {
+        
+        $shops = Shop::findOrFail($id);
+        $shops = Shop::findOrFail($id)->update($request->all());
+
+        return redirect('shops')->with('shops',$shops);
     }
 }
