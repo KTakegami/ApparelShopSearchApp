@@ -5,7 +5,6 @@
 @include('layouts.header')
 
 @section('content')
-
 <div class="container mt-5" style="padding-bottom:170px;">
   @if($errors->any())
   <div class="alert alert-danger">
@@ -20,7 +19,7 @@
   <form method="post" action="{{ route('shops.update',$shop->id) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
-    
+
     <div class="form-group row">
       <div class="col-md-12">
         <input id="shop_name" name="shopName" class="form-control" type="text" value="{{ $shop->shop_name }}">
@@ -75,6 +74,12 @@
           <div class="col-md-6">
             <label for="shopimage">ショップの画像</label>
             <input class="form-control" id="shopimage" type="file" name="shop_image" accept="image/*">
+            @if(isset($shop->shop_image))
+            <div class="container mt-2">
+              <span class="ml-2">登録済みの写真</span>
+              <img src="/storage/{{ $shop->shop_image }}" style="width:100px;height:100px">
+            </div>
+            @endif
           </div>
         </div>
       </div>

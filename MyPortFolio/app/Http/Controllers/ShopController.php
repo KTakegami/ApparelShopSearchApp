@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 use App\Shop;
 
@@ -62,9 +63,6 @@ class ShopController extends Controller
         $request->validate([
             'shopName' => ['required','string', 'max:30'],
             'shop_description' => ['string', 'max:1000'],
-            'genre' => 'required',
-            'product' => 'required',
-            'prefecture' => 'required',
             'shop_address' => ['unique:shops', 'string', 'max:100']
         ]);
 
@@ -104,7 +102,6 @@ class ShopController extends Controller
     }
 
     public function update(Request $request,$id) {
-        
         $shops = Shop::findOrFail($id);
         $shops = Shop::findOrFail($id)->update($request->all());
 
