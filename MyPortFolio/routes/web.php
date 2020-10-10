@@ -34,7 +34,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/shops', 'ShopController@index');
 
     //投稿機能(作成,作成処理,編集,更新,削除)
-    Route::resource('shops', 'ShopController', ['only' => ['create', 'store','show','edit','update']]);
+    Route::resource('shops', 'ShopController', ['only' => ['create', 'store','show','edit','update','destroy']]);
 
 });
 

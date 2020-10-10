@@ -107,4 +107,10 @@ class ShopController extends Controller
 
         return redirect('shops')->with('shops',$shops);
     }
+
+    public function destroy($id) {
+
+        $shops =  Shop::where('id',$id)->delete();
+        return redirect('shops');
+    }
 }

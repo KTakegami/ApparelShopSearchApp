@@ -33,7 +33,18 @@
 
       @if($user_id == $shop->user_id)
       <div id="edit">
-        <a href="{{ route('shops.edit', $shop->id) }}">編集する</a>
+        <button class="p-0 bg-light" style="border:0; color:blue;">
+          <a style="text-decoration:none;" href=" {{ route('shops.edit', $shop->id) }}">編集する</a>
+        </button>
+      </div>
+      <div>
+        <form action="{{ route('shops.destroy', $shop->id) }}" method="post">
+          @csrf
+          @method('DELETE')
+          <button class="p-0 bg-light" type="submit" 
+          style="border:0; color:red; outline: none">
+            削除する</button>
+        </form>
       </div>
       @endif
     </div>
