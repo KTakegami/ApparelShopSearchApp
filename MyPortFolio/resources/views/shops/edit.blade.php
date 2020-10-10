@@ -16,21 +16,21 @@
   </div>
   @endif
 
-  <form method="post" action="{{ route('shops.update',$shop->id) }}" enctype="multipart/form-data">
+  <form method="post" action="{{ route('shops.update',$shops->id) }}" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 
     <div class="form-group row">
       <div class="col-md-12">
-        <input id="shop_name" name="shopName" class="form-control" type="text" value="{{ $shop->shop_name }}">
+        <input id="shop_name" name="shopName" class="form-control" type="text" value="{{ $shops->shop_name }}">
 
-        <textarea class="form-control mt-2" name="shop_description" id="description" cols="30" rows="5">{{ $shop->shop_description }}</textarea>
+        <textarea class="form-control mt-2" name="shop_description" id="description" cols="30" rows="5">{{ $shops->shop_description }}</textarea>
 
         <div class="form-group row">
           <div class="col-md-6">
             <label class="mt-2" for="genre">ジャンル</label>
             <select class="form-control" id="genre" name="genre">
-              <option value="{{$shop->genre_id}}" selected>{{$shop->genre->genre}}</option>
+              <option value="{{$shops->genre_id}}" selected>{{$shops->genre->genre}}</option>
               <option value="1">ストリート</option>
               <option value="2">モード</option>
               <option value="3">ミリタリー</option>
@@ -43,7 +43,7 @@
           <div class="col-md-6">
             <label class="mt-2" for="product">取扱商品</label>
             <select class="form-control" id="product" name="product">
-              <option value="{{$shop->product_id}}" selected>{{$shop->product->product}}</option>
+              <option value="{{$shops->product_id}}" selected>{{$shops->product->product}}</option>
               <option value="1">メンズ</option>
               <option value="2">レディース</option>
               <option value="3">子供服</option>
@@ -58,7 +58,7 @@
           <div class="col-md-6">
             <label for="prefectures">都道府県</label>
             <select class="form-control" name="pref_code" id="prefectures">
-              <option value="{{$shop->prefecture_id}}" selected>{{$shop->prefecture->prefectures}}</option>
+              <option value="{{$shops->prefecture_id}}" selected>{{$shops->prefecture->prefectures}}</option>
               @foreach($prefs as $index => $name)
               <option value="{{ $index }}">{{$name}}</option>
               @endforeach
@@ -66,7 +66,7 @@
           </div>
           <div class="col-md-6">
             <label for="address">住所</label>
-            <input class="form-control" id="address" type="text" name="address" value="{{$shop->shop_address}}">
+            <input class="form-control" id="address" type="text" name="address" value="{{$shops->shop_address}}">
           </div>
         </div>
 
@@ -74,10 +74,10 @@
           <div class="col-md-6">
             <label for="shopimage">ショップの画像</label>
             <input class="form-control" id="shopimage" type="file" name="shop_image" accept="image/*">
-            @if(isset($shop->shop_image))
+            @if(isset($shops->shop_image))
             <div class="container mt-2">
               <span class="ml-2">登録済みの写真</span>
-              <img src="/storage/{{ $shop->shop_image }}" style="width:100px;height:100px">
+              <img src="/storage/{{ $shops->shop_image }}" style="width:100px;height:100px">
             </div>
             @endif
           </div>

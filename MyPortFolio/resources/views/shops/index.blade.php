@@ -81,7 +81,7 @@
                     </div>
                     @endif
                     <!-- 画像表示処理 -->
-                    <div class="shoo-link mt-2">
+                    <div class="shop-link mt-2">
                         <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
                         <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
                     </div>

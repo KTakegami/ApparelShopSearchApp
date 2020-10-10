@@ -79,6 +79,8 @@ class ShopController extends Controller
 
         if($shop_image) { //画像投稿時public直下に画像を保存
             $filePath = $shop_image->store('public');
+            //storeメソッドを呼ぶと、storage/app/public配下にデータが保存される
+
             $shops->shop_image = str_replace('public', '',$filePath);
         }
 
@@ -96,13 +98,32 @@ class ShopController extends Controller
     }
 
     public function edit($id) {
-        $shop = Shop::findOrFail($id);
-        $prefs = config('prefectures');
-        return view('shops.edit')->with('shop',$shop)->with('prefs', $prefs);
-    }
+        $shops = Shop::findOrFail($id);
 
+        $prefs = config('prefectures');
+        return view('shops.edit')->with('shops',$shops)->with('prefs', $prefs);
+    }
+    
     public function update(Request $request,$id) {
         $shops = Shop::findOrFail($id);
+
+        //ここから画像処理
+        // $reqImage = $request->shop_image;
+
+        // if($reqImage) {
+        //     if(isset($shops->shop_image)) {
+        //         Storage::delete($shops->shop_image);
+        //         $filePath = $reqImage->store('public');
+        //         $shops->shop_image = str_replace('public','',$filePath);
+        //         $shops->save();
+        //     } else {
+        //         $filePath = $reqImage->store('public');
+        //         $shops->shop_image = str_replace('public', '', $filePath);
+        //         $shops->save();
+        //     }
+        // }
+        //ここまで
+
         $shops = Shop::findOrFail($id)->update($request->all());
 
         return redirect('shops')->with('shops',$shops);
