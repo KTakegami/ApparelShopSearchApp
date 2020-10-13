@@ -70,7 +70,7 @@
             @foreach($shops as $shop)
             <div class="col-12 col-sm-6 col-md-4 mb-3">
                 <div class="shop-card container">
-                    <!-- 画像表示処理 -->
+                    <!-- 画像表示処理ここから -->
                     @if(isset($shop->shop_image))
                     <div>
                         <img class="img" src="/storage/{{ $shop->shop_image }}">
@@ -80,9 +80,12 @@
                         <p>NoImage</p>
                     </div>
                     @endif
-                    <!-- 画像表示処理 -->
+                    <!-- 画像表示処理ここまで -->
                     <div class="shop-link mt-2">
                         <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
+                        <a href="" class="favorite_count text-dark">
+                            <i class="far fa-thumbs-up"></i>
+                        </a>
                         <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
                     </div>
                 </div>
