@@ -41,8 +41,7 @@
         <form action="{{ route('shops.destroy', $shop->id) }}" method="post">
           @csrf
           @method('DELETE')
-          <button class="p-0 bg-light" type="submit" 
-          style="border:0; color:red; outline: none">
+          <button class="p-0 bg-light" type="submit" style="border:0; color:red; outline: none">
             削除する</button>
         </form>
       </div>

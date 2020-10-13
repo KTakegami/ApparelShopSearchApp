@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Shop extends Model
 {
@@ -11,7 +12,7 @@ class Shop extends Model
 
 
     public function user() { //N:1
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
     
     public function genre() { //1:1
@@ -26,7 +27,12 @@ class Shop extends Model
         return $this->belongsTo('App\Product');
     }
 
-    public function favorite() { //1:N
+    public function favorites() { //1:N
         return $this->hasMany('App\Favorite');
+    }
+
+    public function favorites_by()
+    {
+        return Favorite::where('user_id', Auth::user()->id)->first();
     }
 }

@@ -94,7 +94,10 @@ class ShopController extends Controller
         $user_id = Auth::id();
         $shop = Shop::findOrFail($id);
 
+        // $favorite = $shop->favorites()->where('user_id', Auth::user()->id)->first();
+
         return view('shops.show')->with('shop',$shop)->with('user_id',$user_id);
+        // ->with('favorite',$favorite);
     }
 
     public function edit($id) {
