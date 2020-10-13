@@ -107,6 +107,9 @@ class ShopController extends Controller
     public function update(Request $request,$id) {
         $shops = Shop::findOrFail($id);
 
+        logger()->info($shops->shop_image);
+        logger()->info($request->shop_image);
+
         //ここから画像処理
         // $reqImage = $request->shop_image;
 
