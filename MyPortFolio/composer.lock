@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b29cefe21d8a2af4205ce29fe76d889b",
+    "content-hash": "6299de89f111f6ad011c836c8b7eafd8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -743,39 +743,6 @@
                 "url"
             ],
             "time": "2020-09-30T07:37:11+00:00"
-        },
-        {
-            "name": "kanazaca/counter-cache",
-            "version": "1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/kanazaca/counter-cache.git",
-                "reference": "78212cbddd444546a4647c10242dea5131a02767"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/kanazaca/counter-cache/zipball/78212cbddd444546a4647c10242dea5131a02767",
-                "reference": "78212cbddd444546a4647c10242dea5131a02767",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "kanazaca\\CounterCache\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Hugo Neto",
-                    "email": "hugo.neto@grandesplanos.com"
-                }
-            ],
-            "description": "Package for Laravel to implement counter cache",
-            "time": "2016-05-25T01:35:59+00:00"
         },
         {
             "name": "laravel/framework",
