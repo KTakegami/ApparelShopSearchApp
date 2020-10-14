@@ -1,13 +1,26 @@
-@extends("layouts.header")
+@extends("layouts.parent")
+
+@section('title','ショップ投稿')
+
+@include('layouts.header')
 
 @section('content')
-
 <div class="container mt-5" style="padding-bottom:170px;">
+  @if($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      @foreach($errors->all() as $error)
+      <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
+
   <form method="post" action="{{ route('shops.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group row">
       <div class="col-md-12">
-        <input id="shop_name" name="shop_name" class="form-control" type="text" placeholder="ショップ名を入力してください">
+        <input id="shop_name" name="shopName" class="form-control" type="text" placeholder="ショップ名を入力してください">
 
         <textarea class="form-control mt-2" name="shop_description" id="description" cols="30" rows="5" placeholder="どんなショップですか？"></textarea>
 
@@ -44,14 +57,14 @@
             <label for="prefectures">都道府県</label>
             <select class="form-control" name="pref_code" id="prefectures">
               <option value="" selected>選択してください</option>
-              @foreach ($prefs as $index => $name)
+              @foreach($prefs as $index => $name)
               <option value="{{ $index }}">{{$name}}</option>
               @endforeach
             </select>
           </div>
           <div class="col-md-6">
             <label for="address">住所</label>
-            <input class="form-control" id="address" type="text" name="address">
+            <input class="form-control" id="address" type="text" name="address" placeholder="※市町村以降を入力してください">
           </div>
         </div>
 

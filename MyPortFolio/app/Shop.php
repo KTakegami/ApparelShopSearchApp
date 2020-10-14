@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Shop extends Model
 {
@@ -10,23 +11,28 @@ class Shop extends Model
     //複数代入時に代入を許可する属性を配列で設定
 
 
-    public function users() { //N:1
-        return $this->belongsTo('App\User');
+    public function user() { //N:1
+        return $this->belongsTo(User::class);
     }
     
-    public function genres() { //1:1
-        return $this->hasOne('App\Genre');
+    public function genre() { //1:1
+        return $this->belongsTo('App\Genre');
     }
 
-    public function prefectures() { //1:1
-        return $this->hasOne('App\Prefecture');
+    public function prefecture() { //1:1
+        return $this->belongsTo('App\Prefecture');
     }
 
-    public function products() { //1:1
-        return $this->hasOne('App\Product');
+    public function product() { //1:1
+        return $this->belongsTo('App\Product');
     }
 
     public function favorites() { //1:N
         return $this->hasMany('App\Favorite');
+    }
+
+    public function favorites_by()
+    {
+        return Favorite::where('user_id', Auth::user()->id)->first();
     }
 }

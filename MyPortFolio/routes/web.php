@@ -17,25 +17,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//ログイン周り
 Route::get('guest', 'Auth\LoginController@guest'); //ゲストログイン
+
 Auth::routes([
     'reset' => false
     ]);
 
-//ゲストログイン時のホームに戻る際のルーティング
-Route::get('/home', 'HomeController@index');
-
+//ショップ一覧に戻る際のルーティング
 
 //ログインしている時のみルーティング
 Route::group(['middleware' => 'auth'], function() {
-
+    
     //ユーザーのログアウト処理
     Route::post('/', 'Auth\LoginController@logout');
 
-    //投稿機能(作成,作成処理,編集,更新,削除)
-    Route::resource('shops', 'ShopController', ['only' => ['create', 'store']]);
+    Route::get('/shops', 'ShopController@index');
 
+    //投稿機能(作成,作成処理,編集,更新,削除)
+    Route::resource('shops', 'ShopController', ['only' => ['create', 'store','show','edit','update','destroy']]);
+
+    Route::post('/shops/{shop}/likes', 'FavoriteController@store')->name('shop.favorite');
+    Route::post('/shops/{shop}/likes/{likse}', 'FavoriteController@destroy')->name('shop.unfavorite');
 
 });
 

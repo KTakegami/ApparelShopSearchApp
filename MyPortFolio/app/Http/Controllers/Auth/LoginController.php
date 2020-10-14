@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/shops';
 
     /**
      * Create a new controller instance.
@@ -50,7 +50,7 @@ class LoginController extends Controller
 
         if(Auth::attempt(['email' => $email, 'password' => $password]))
         {
-            return redirect('/home');
+            return redirect('/shops');
         }
     }
 }
