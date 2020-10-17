@@ -21,24 +21,21 @@ Route::get('guest', 'Auth\LoginController@guest'); //ゲストログイン
 
 Auth::routes([
     'reset' => false
-    ]);
+]);
 
 //ショップ一覧に戻る際のルーティング
 
 //ログインしている時のみルーティング
-Route::group(['middleware' => 'auth'], function() {
-    
+Route::group(['middleware' => 'auth'], function () {
+
     //ユーザーのログアウト処理
     Route::post('/', 'Auth\LoginController@logout');
 
     Route::get('/shops', 'ShopController@index');
 
     //投稿機能(作成,作成処理,編集,更新,削除)
-    Route::resource('shops', 'ShopController', ['only' => ['create', 'store','show','edit','update','destroy']]);
+    Route::resource('shops', 'ShopController', ['only' => ['create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
-    Route::post('/shops/{shop}/likes', 'FavoriteController@store')->name('shop.favorite');
-    Route::post('/shops/{shop}/likes/{likse}', 'FavoriteController@destroy')->name('shop.unfavorite');
-
+    Route::get('shops/favorite/{shopId}', 'FavoriteController@favorite')->name('shops.favorite');
+    Route::get('shops/unfavorite/{shopId}', 'FavoriteController@unfavorite')->name('shops.unfavorite');
 });
-
-

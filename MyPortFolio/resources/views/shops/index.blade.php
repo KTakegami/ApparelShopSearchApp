@@ -83,9 +83,22 @@
                     <!-- 画像表示処理ここまで -->
                     <div class="shop-link mt-2">
                         <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
-                        <a href="" class="favorite_count text-dark">
-                            <i class="far fa-thumbs-up"></i>
+
+                        <!-- いいね機能 -->
+                        @if($shop->favorited_authUser())
+                        <a href="{{ route('shops.unfavorite',$shop->id) }}" style="text-decoration:none;" class="text-dark">
+                            <i class="far fa-star"></i>
+                            {{$shop->favorites->count()}}
                         </a>
+                        @else
+                        <a href="{{ route('shops.favorite', $shop->id)}}" style="text-decoration:none;" class="text-warning">
+                            <i class="far fa-star"></i>
+                            {{$shop->favorites->count()}}
+                        </a>
+                        @endif
+                        <!-- いいね機能 終 -->
+
+
                         <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
                     </div>
                 </div>
