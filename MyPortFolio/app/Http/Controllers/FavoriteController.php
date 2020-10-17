@@ -11,23 +11,27 @@ use App\Shop;
 
 class FavoriteController extends Controller
 {
-    public function favorite($shopId) {
-        $user_id = auth()->user()->id;
+    // public function store(Request $request, $shopId)
+    // {
+    //     favorite::create(
+    //         array(
+    //             'user_id' => Auth::user()->id,
+    //             'shop_id' => $shopId
+    //         )
+    //     );
 
-        Favorite::create([
-            'shop_id' => $shopId,
-            'user_id' => $user_id
-        ]);
+    //     $shop = Shop::findOrFail($shopId);
 
-        return redirect()->back();
-    }
+    //     return redirect()
+    //         ->action('ShopController@show', $shop->id);
+    // }
 
-    public function unfavorite($shopId) {
-        $user_id = auth()->user()->id;
+    // public function destroy($shopId, $favoriteId)
+    // {
+    //     $shop = Shop::findOrFail($shopId);
+    //     $shop->like_by()->findOrFail($favoriteId)->delete();
 
-        $favorite = Favorite::where('shop_id',$shopId)->where('user_id',$user_id)->first();
-        $favorite->delete();
-
-        return redirect()->back();
-    }
+    //     return redirect()
+    //         ->action('ShopController@show', $shop->id);
+    // }
 }

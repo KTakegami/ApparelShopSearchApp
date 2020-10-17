@@ -39,7 +39,7 @@ class ShopController extends Controller
         }
         //ここまで
 
-        $shops = $query->orderBy('created_at', 'desc')->simplePaginate(15);
+        $shops = $query->orderBy('created_at', 'desc')->paginate(10);
         //↑新しい順に上から表示
 
         return view('shops.index')->with('shops', $shops)->with('prefs', $prefs);
