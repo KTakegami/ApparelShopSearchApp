@@ -31,3 +31,5 @@ class FavoriteController extends Controller
         return redirect()->back();
     }
 }
+
+//プッシュ用コメント
