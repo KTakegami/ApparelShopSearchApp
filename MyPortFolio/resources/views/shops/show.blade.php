@@ -46,7 +46,24 @@
         </form>
       </div>
       @endif
+
+      <!-- いいね機能 -->
+      @if($shop->favorited_authUser())
+      <a href="{{ route('shops.unfavorite',$shop->id) }}" style="text-decoration:none;" class="text-dark">
+        <i class="far fa-star"></i>
+        {{$shop->favorites->count()}}
+      </a>
+      @else
+      <a href="{{ route('shops.favorite', $shop->id)}}" style="text-decoration:none;" class="text-warning">
+        <i class="far fa-star"></i>
+        {{$shop->favorites->count()}}
+      </a>
+      @endif
+      <!-- いいね機能 終 -->
+
+
     </div>
+
 
     <div class="col-12 mt-3">
       <dl>

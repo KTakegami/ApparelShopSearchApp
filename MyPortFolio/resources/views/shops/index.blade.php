@@ -65,8 +65,11 @@
         </div>
     </div>
 
-    <div class="container mt-5" id="shopList">
-        <div class="row">
+    <div class="container mt-5" id="shopList" data-infinite-scroll='{
+    "path": ".pagination a[rel=next]",
+    "append": ".post"
+  }'>
+        <div class="row shop">
             @foreach($shops as $shop)
             <div class="col-12 col-sm-6 col-md-4 mb-3">
                 <div class="shop-card container">
@@ -83,9 +86,22 @@
                     <!-- 画像表示処理ここまで -->
                     <div class="shop-link mt-2">
                         <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
-                        <a href="" class="favorite_count text-dark">
-                            <i class="far fa-thumbs-up"></i>
+
+                        <!-- ここからいいね機能 -->
+                        @if($shop->favorited_authUser())
+                        <a href="{{ route('shops.unfavorite',$shop->id) }}" style="text-decoration:none;" class="text-dark">
+                            <i class="far fa-star"></i>
+                            {{$shop->favorites->count()}}
                         </a>
+                        @else
+                        <a href="{{ route('shops.favorite', $shop->id)}}" style="text-decoration:none;" class="text-warning">
+                            <i class="far fa-star"></i>
+                            {{$shop->favorites->count()}}
+                        </a>
+                        @endif
+                        <!-- ここまでいいね機能 -->
+
+
                         <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
                     </div>
                 </div>
