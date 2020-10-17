@@ -36,8 +36,8 @@ Route::group(['middleware' => 'auth'], function() {
     //投稿機能(作成,作成処理,編集,更新,削除)
     Route::resource('shops', 'ShopController', ['only' => ['create', 'store','show','edit','update','destroy']]);
 
-    Route::get('shops/favorite/{shopId}','FavoriteController@favorite')->name('shops.favorite');
-    Route::get('shops/unfavorite/{shopId}','FavoriteController@unfavorite')->name('shops.unfavorite');
+    Route::post('/shops/{shop}/likes', 'FavoriteController@store')->name('shop.favorite');
+    Route::post('/shops/{shop}/likes/{likse}', 'FavoriteController@destroy')->name('shop.unfavorite');
 
 });
 
