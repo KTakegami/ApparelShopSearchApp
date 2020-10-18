@@ -20,21 +20,46 @@ body {
     background-color: #FCFFF5 !important;
 }
 
-.btn-success, .btn-success:hover {
+.btn-success,
+.btn-success:hover,
+.btn-success:not(:disabled):not(.disabled).active,
+.btn-success:not(:disabled):not(.disabled):active,
+.show>.btn-success.dropdown-toggle,
+.btn-success:not(:disabled):not(.disabled).active:focus,
+.btn-success:not(:disabled):not(.disabled):active:focus,
+.show>.btn-success.dropdown-toggle:focus {
     background-color: #91AA9D !important;
     border-color: #91AA9D;
     filter:brightness(105%);
+    box-shadow: none;
 }
 
-.btn-warning,.btn-warning:hover {
+.btn-warning,
+.btn-warning:hover,
+.btn-warning:not(:disabled):not(.disabled).active,
+.btn-warning:not(:disabled):not(.disabled):active,
+.show>.btn-warning.dropdown-toggle,
+.btn-warning:not(:disabled):not(.disabled).active:focus,
+.btn-warning:not(:disabled):not(.disabled):active:focus,
+.show>.btn-warning.dropdown-toggle:focus
+ {
     background-color: #3E606F !important;
     border-color: #3E606F;
     filter:brightness(110%);
+    box-shadow: none;
 }
-.btn-danger,.btn-danger:hover {
+.btn-danger,
+.btn-danger:hover,
+.btn-danger:not(:disabled):not(.disabled).active,
+.btn-danger:not(:disabled):not(.disabled):active,
+.show>.btn-danger.dropdown-toggle,
+.btn-danger:not(:disabled):not(.disabled).active:focus,
+.btn-danger:not(:disabled):not(.disabled):active:focus,
+.show>.btn-danger.dropdown-toggle:focus {
     background-color: #193441 !important;
     border-color: #193441;
     filter:brightness(150%);
+    box-shadow: none;
 }
 
 /* トップページ */

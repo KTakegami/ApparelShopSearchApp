@@ -38,6 +38,19 @@ class Shop extends Model
 
     public function favorited_authUser()
     {
+        $id = auth()->user()->id; //ログインユーザのidを取得
+        $favorites = array(); //空の配列を定義
+
+        foreach ($this->favorites as $favorite) {
+            array_push($favorites, $favorite->user_id);
+        }
+
+        if (in_array($id, $favorites)) {
+            //in_array ($検索する値 , $配列) favoritesの中にuser_idが存在するか判定
+            return true;
+        } else {
+            return false;
+        }
         return Favorite::where('user_id', Auth::user()->id)->first();
     }
 }
