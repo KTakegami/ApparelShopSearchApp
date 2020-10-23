@@ -38,4 +38,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('shops/favorite/{shopId}', 'FavoriteController@favorite')->name('shops.favorite');
     Route::get('shops/unfavorite/{shopId}', 'FavoriteController@unfavorite')->name('shops.unfavorite');
+
+    Route::get('mypage', 'HomeController@mypage');
 });

@@ -121,3 +121,12 @@ dt, dd {
 .shop-des {
     border: 1px solid lightgray;
 }
+
+
+/* マイページ */
+.tabs p {
+    cursor: pointer;
+}
+.tabs p.active {
+    background-color: lightgray;
+}

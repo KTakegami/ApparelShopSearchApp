@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Shop;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -22,4 +23,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+     public function mypage() {
+        $user = auth()->user();
+
+         return view('mypages.mypage')->with('user',$user);
+     }
 }
