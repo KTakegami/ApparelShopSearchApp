@@ -3,7 +3,7 @@
 @include('layouts.header')
 
 @section('content')
-<div class="container mt-5" style="padding-bottom: 170px;">
+<div class="main container mt-5">
   <div class="row">
     <div class="col-12 col-sm-6">
       @if(isset($shop->shop_image))

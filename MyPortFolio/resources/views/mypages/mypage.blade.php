@@ -6,7 +6,7 @@
 
 @section('content')
 
-<div class="container mt-5">
+<div class="main container mt-5">
   <div class="row user_info text-center justify-content-center">
     <div class="col-12 col-sm-6">
       @if(isset($user->profile_image))

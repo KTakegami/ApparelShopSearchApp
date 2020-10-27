@@ -91,6 +91,15 @@ button {
     margin-right: 7px;
 }
 
+/* メインコンテンツ */
+.main {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 150px;
+    box-sizing: border-box;
+}
+
+
 /* ショップ一覧(shops.index) */
 .shop-card {
     border: 1px solid #000;

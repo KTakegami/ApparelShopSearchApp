@@ -5,13 +5,13 @@
 @include('layouts.header')
 
 @section('content')
-<div class="container mt-5 pt-2" style="padding-bottom:170px;">
+<div class="main container mt-5 pt-2">
     <div class="row shop_search">
         <div class="col-12">
             <div class="search">絞り込み検索</div>
             <hr>
 
-            <div class="searcg-body">
+            <div class="search-body">
                 <form method="get" action="{{ url('/shops')  }}">
                     @csrf
 
@@ -67,6 +67,7 @@
 
     <div class="container mt-5" id="shopList">
         <div class="row">
+            @if($shops->count())
             @foreach($shops as $shop)
             <div class="col-6 col-md-4 col-lg-3 mb-3">
                 <div class="shop-card container">
@@ -104,6 +105,9 @@
                 </div>
             </div>
             @endforeach
+            @else
+            <p>検索条件に合ったショップが見つかりませんでした</p>
+            @endif
         </div>
 
         <div class="paginate">

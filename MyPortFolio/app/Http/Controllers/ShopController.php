@@ -36,6 +36,7 @@ class ShopController extends Controller
         if (isset($pref)) {
             $query->where('prefecture_id', $pref);
         }
+
         //ここまで
 
         $shops = $query->orderBy('created_at', 'desc')->paginate(20);
