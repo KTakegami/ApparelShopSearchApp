@@ -18,13 +18,12 @@ class ShopController extends Controller
         $prefs = config('prefectures'); //都道府県の連想配列を取得
         $query = Shop::query(); //クエリを作成
 
-
         //絞り込み検索ここから//
         $shop_name = $request->shopName;
         $genre = $request->genre;
         $product = $request->product;
         $pref = $request->pref_code;
-        
+
         if (isset($shop_name)) {
             $query->where('shop_name', 'like', '%' . $shop_name . '%');
         }
@@ -42,7 +41,7 @@ class ShopController extends Controller
         $shops = $query->orderBy('created_at', 'desc')->paginate(20);
         //↑新しい順に上から表示
 
-        return view('shops.index')->with('shops', $shops)->with('prefs', $prefs);
+        return view('shops.index')->with('shops', $shops)->with('prefs', $prefs)->with('user',$user);
     }
 
 
@@ -51,8 +50,7 @@ class ShopController extends Controller
         $user = auth()->user();
         $prefs = config('prefectures');
 
-        logger()->info($prefs);
-        return view('shops.create',['prefs' => $prefs]);
+        return view('shops.create',['prefs' => $prefs])->with('user', $user);
     }
 
     public function store(Request $request)
@@ -63,7 +61,11 @@ class ShopController extends Controller
         $request->validate([
             'shopName' => ['required','string', 'max:30'],
             'shop_description' => ['string', 'max:1000'],
-            'shop_address' => ['unique:shops', 'string', 'max:100']
+            'genre' => 'required',
+            'product' => 'required',
+            'prefectures' => 'required',
+            'shop_address' => ['unique:shops', 'string', 'max:100'],
+            'shop_image' => 'image'
         ]);
 
         $shops = new Shop;
@@ -91,22 +93,43 @@ class ShopController extends Controller
     }
 
     public function Show(Request $request, $id) {
+        $user = auth()->user();
         $user_id = Auth::id();
         $shop = Shop::findOrFail($id);
 
-        return view('shops.show')->with('shop',$shop)->with('user_id',$user_id);
+        $address = $shop->shop_address;
+
+        $data = [
+            'shop' => $shop,
+            'user_id' => $user_id,
+            'user' => $user,
+            'address' => $address
+        ];
+
+        return view('shops.show',$data);
     }
 
     public function edit($id) {
+        $user = auth()->user();
         $shops = Shop::findOrFail($id);
 
         $prefs = config('prefectures');
-        return view('shops.edit')->with('shops',$shops)->with('prefs', $prefs);
+        return view('shops.edit')->with('shops',$shops)->with('prefs', $prefs)->with('user', $user);
     }
 
     public function update(Request $request,$id) {
         $shops = Shop::findOrFail($id);
         $user = auth()->user();
+
+        $request->validate([
+            'shopName' => ['required', 'string', 'max:30'],
+            'shop_description' => ['string', 'max:1000'],
+            'genre' => 'required',
+            'product' => 'required',
+            'prefectures' => 'required',
+            'shop_address' => ['unique:shops', 'string', 'max:100'],
+            'shop_image' => 'image'
+        ]);
 
         //ここから画像以外の処理
         $shops->user_id = $user->id;

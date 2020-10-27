@@ -69,9 +69,49 @@
         <dd class="shop-des p-3">{{$shop->shop_description}}</dd>
       </dl>
     </div>
+
+    <div class="offset-1 col-10" id="gmap" style="width:70%;height:400px"></div>
   </div>
 </div>
 
 @include('layouts.footer')
+
+@php
+$address = $address;
+@endphp
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEvOLiwEPlhftwZhIUOxmlFZyvabEJPk4&callback=initMap" async defer></script>
+
+<script type="text/javascript">
+  var map;
+  var marker;
+  var geocoder;
+
+  function initMap() {
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({
+      'address': '{{$address}}' //住所
+    }, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        map = new google.maps.Map(document.getElementById('gmap'), {
+          center: results[0].geometry.location,
+          zoom: 18 //ズーム
+        });
+        marker = new google.maps.Marker({
+          position: results[0].geometry.location,
+          map: map
+        });
+        infoWindow = new google.maps.InfoWindow({
+          content: '<p>{{$shop->shop_name}}{{$shop->shop_address}}</p>'
+        });
+        marker.addListener('click', function() {
+          infoWindow.open(map, marker);
+        });
+      } else {
+        alert(status);
+      }
+    });
+  }
+</script>
 
 @endsection
