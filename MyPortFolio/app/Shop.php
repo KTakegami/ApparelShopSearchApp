@@ -10,7 +10,6 @@ class Shop extends Model
     protected $fillable = ['shop_name', 'shop_description', 'shop_image'];
     //複数代入時に代入を許可する属性を配列で設定
 
-
     public function user()
     { //N:1
         return $this->belongsTo(User::class);
