@@ -7,23 +7,18 @@
 @section('content')
 
 <div class="container mt-5">
-  <div class="row user_info">
-    <div class="col-6 text-center">
+  <div class="row user_info text-center justify-content-center">
+    <div class="col-12 col-sm-6">
       @if(isset($user->profile_image))
-      <img class="img">
+      <div class="user-img" style="background-image:url('/storage/{{ $user->profile_image }}');"></div>
       @else
-      <p class="text-center rounded-circle bg-white p-5"><i class="fas fa-user fa-7x"></i></p>
+      <p class="text-center rounded-circle bg-white p-5" style="width:100%;height:100%"><i class="fas fa-user fa-7x"></i></p>
       @endif
-      <a href="mypage/Edit">編集</a>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-sm-6 mt-4 mt-sm-0">
       <h2 class="border border-dark">{{$user->name}}さん</h2>
-      @if(isset($user->self_introduction))
-      <p class="border border-dark">{{$user->self_introduction}}</p>
-      @else
-      <p class="border border-dark">自己紹介を書こう！</p>
-      @endif
     </div>
+    <a href="{{ route('mypage.edit', $user->id) }}">ユーザ情報を編集</a>
   </div>
 
   <hr>
@@ -31,7 +26,7 @@
   <div id="myContent">
     <div class="row tabs text-center">
       <div class="col-6">
-        <p v-on:click="change('0')" :class="{'active': isActive === '0'}">いいねしたショップ</p>
+        <p v-on:click="change('0')" :class="{'active': isActive === '0'}">投稿したショップ</p>
       </div>
       <div class="col-6">
         <p v-on:click="change('1')" :class="{'active': isActive === '1'}">お気に入りのショップ</p>
@@ -39,21 +34,58 @@
     </div>
 
     <div class="content">
-      <div class="one d-flex" v-if="isActive === '0'">
-        <div class=" bg-info mr-3" style="width:200px;height:100px">いいね</div>
-      <div class="bg-info mr-3" style="width:200px;height:100px">いいね</div>
-      <div class="bg-info mr-3" style="width:200px;height:100px">いいね</div>
-      <div class="bg-info" style="width:200px;height:100px">いいね</div>
+      <!-- 投稿したショップ -->
+      <div class="row postShop" v-if="isActive === '0'">
+        @foreach($postShops as $shop)
+        <div class="col-6 col-md-4 col-lg-3 mb-3">
+          <div class="shop-card container">
+            <!-- 画像表示処理ここから -->
+            @if(isset($shop->shop_image))
+            <div>
+              <img class="img" src="/storage/{{ $shop->shop_image }}">
+            </div>
+            @else
+            <div class="img bg-white d-flex justify-content-center align-items-center">
+              <p>NoImage</p>
+            </div>
+            @endif
+            <!-- 画像表示処理ここまで -->
+            <div class="shop-link mt-2">
+              <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
+              <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
+            </div>
+          </div>
+        </div>
+        @endforeach
+      </div>
+      
+      <!-- お気に入りしたショップ -->
+      <div class="row favoriteShop" v-if="isActive === '1'">
+        @foreach($favoriteShops as $shop)
+        <div class="col-6 col-md-4 col-lg-3 mb-3">
+          <div class="shop-card container">
+            <!-- 画像表示処理ここから -->
+            @if(isset($shop->shop_image))
+            <div>
+              <img class="img" src="/storage/{{ $shop->shop_image }}">
+            </div>
+            @else
+            <div class="img bg-white d-flex justify-content-center align-items-center">
+              <p>NoImage</p>
+            </div>
+            @endif
+            <!-- 画像表示処理ここまで -->
+            <div class="shop-link mt-2">
+              <a href="{{ route('shops.show', $shop->id) }}">{{$shop->shop_name}}</a>
+              <p>{{optional($shop->prefecture)->prefectures}}{{$shop->shop_address}}</p>
+            </div>
+          </div>
+        </div>
+        @endforeach
+      </div>
     </div>
-    <div class="two d-flex" v-else-if="isActive === '1'">
-      <div class="bg-danger mr-3" style="width:200px;height:100px">お気に入り</div>
-      <div class="bg-danger mr-3" style="width:200px;height:100px">お気に入り</div>
-      <div class="bg-danger mr-3" style="width:200px;height:100px">お気に入り</div>
-      <div class="bg-danger" style="width:200px;height:100px">お気に入り</div>
-    </div>
-  </div>
 
-</div>
+  </div>
 
 </div>
 
