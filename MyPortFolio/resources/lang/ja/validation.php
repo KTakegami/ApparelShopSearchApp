@@ -145,6 +145,17 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'shopName' => 'ショップ名',
+        'shop_description' => 'ショップ説明',
+        'genre' => 'ジャンル',
+        'product' => '取扱商品',
+        'prefectures' => '都道府県',
+        'shop_address' => '住所',
+        'shop_image' => '画像',
+
+        'name' => 'ニックネーム',
+        'profImage' => 'ユーザ画像'
+    ],
 
 ];

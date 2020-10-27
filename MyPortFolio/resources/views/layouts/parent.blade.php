@@ -16,7 +16,7 @@
 
   <!-- Style -->
   <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
-  
+
   <!-- fontawesome -->
   <script src="https://kit.fontawesome.com/74b4cb0617.js" crossorigin="anonymous"></script>
 

@@ -22,7 +22,7 @@
       </li>
       <li class="nav-item">
         <button class="btn btn-warning p-0">
-          <a class="nav-link" href="{{ url('/mypage') }}">
+          <a class="nav-link" href="{{ route('mypage.show',$user->id ) }}">
             マイページ
           </a>
         </button>
@@ -50,7 +50,7 @@
         </button>
       </li>
       <form id="guest-login" method="get" action="guest">
-        <li>
+        <li class="nav-item">
           <button class="btn btn-danger p-0">
             <a class="nav-link">ゲストログイン</a>
           </button>
