@@ -64,7 +64,7 @@ class ShopController extends Controller
             'shop_description' => ['string', 'max:1000'],
             'genre' => 'required',
             'product' => 'required',
-            'prefectures' => 'required',
+            'pref_code' => 'required',
             'shop_address' => ['unique:shops', 'string', 'max:100'],
             'shop_image' => 'image'
         ]);
