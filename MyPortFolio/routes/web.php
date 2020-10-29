@@ -28,6 +28,8 @@ Auth::routes([
 //ログインしている時のみルーティング
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('/', 'Auth\LoginController@top');
+
     //ユーザーのログアウト処理
     Route::post('/', 'Auth\LoginController@logout');
 
