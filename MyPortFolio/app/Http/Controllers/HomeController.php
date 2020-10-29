@@ -61,15 +61,15 @@ class HomeController extends Controller
 
         $req->validate([
             'name' => ['string', 'max:15'],
-            'profImage' => 'image'
+            'profImage' => ['file','image','max:2048']
         ]);
 
         $user->name = $req->name;
 
         $user_image = $req->profImage;
-        $filename = $user_image->getClientOriginalName(); //オリジナルのファイル名取得
-
+        
         if ($user_image) {
+            $filename = $user_image->getClientOriginalName(); //オリジナルのファイル名取得
             if (isset($user->profile_image)) {
                 Storage::delete('public' . $user->profile_image); //public配下の画像を削除
                 $path = $user_image->storeAs('public', $filename); //$fileNameで保存する
@@ -82,6 +82,6 @@ class HomeController extends Controller
 
         $user->save();
 
-        return back()->with('user',$user);
+        return redirect()->route('mypage.show',$user->id);
     }
 }

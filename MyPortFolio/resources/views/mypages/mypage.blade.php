@@ -10,7 +10,7 @@
   <div class="row user_info text-center justify-content-center">
     <div class="col-12 col-sm-6">
       @if(isset($user->profile_image))
-      <div class="user-img" style="background-image:url('/storage/{{ $user->profile_image }}');"></div>
+      <div class="user-img rounded-circle" style="background-image:url('/storage/{{ $user->profile_image }}');"></div>
       @else
       <p class="text-center rounded-circle bg-white p-5" style="width:100%;height:100%"><i class="fas fa-user fa-7x"></i></p>
       @endif
@@ -58,7 +58,7 @@
         </div>
         @endforeach
       </div>
-      
+
       <!-- お気に入りしたショップ -->
       <div class="row favoriteShop" v-if="isActive === '1'">
         @foreach($favoriteShops as $shop)
