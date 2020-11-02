@@ -53,12 +53,4 @@ class LoginController extends Controller
             return redirect('/shops');
         }
     }
-
-    public function top () {
-        $user = auth()->user();
-
-        return view('welcome')->with('user',$user);
-    }
 }
-
-

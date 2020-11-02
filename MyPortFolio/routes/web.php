@@ -28,7 +28,10 @@ Auth::routes([
 //ログインしている時のみルーティング
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::get('/', 'Auth\LoginController@top');
+    Route::get('/', function () {
+        $user = auth()->user();
+        return view('welcome')->with('user',$user);
+    });
 
     //ユーザーのログアウト処理
     Route::post('/', 'Auth\LoginController@logout');
