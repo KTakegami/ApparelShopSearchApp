@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = auth()->user();
+    return view('welcome')->with('user', $user);
 });
 
 Route::get('guest', 'Auth\LoginController@guest'); //ゲストログイン
@@ -27,11 +28,6 @@ Auth::routes([
 
 //ログインしている時のみルーティング
 Route::group(['middleware' => 'auth'], function () {
-
-    Route::get('/', function () {
-        $user = auth()->user();
-        return view('welcome')->with('user',$user);
-    });
 
     //ユーザーのログアウト処理
     Route::post('/', 'Auth\LoginController@logout');
